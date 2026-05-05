@@ -1,0 +1,592 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=DM+Sans:wght@400;500;600&display=swap');
+:root{--roxo:#4E2096;--rd:#341466;--rl:#C7A5FD;--gelo:#F3EEE8;--vm:#EA534A;--am:#FFA840;--vd:#49A971;--br:#ffffff;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--gelo);}
+.app{padding-bottom:48px;}
+
+/* HEADER */
+.hdr{background:var(--rd);padding:16px 24px;display:flex;align-items:center;gap:12px;border-bottom:3px solid var(--am);}
+.hdr img{height:30px;object-fit:contain;display:block;}
+.hdr-t{color:#fff;font-family:'Nunito',sans-serif;font-weight:800;font-size:15px;line-height:1.2;}
+.hdr-s{color:var(--rl);font-size:11px;margin-top:2px;}
+
+.wrap{padding:20px 24px 0;}
+
+/* STEPS */
+.steps{display:flex;align-items:center;gap:6px;margin-bottom:16px;}
+.stp{display:flex;align-items:center;gap:5px;font-size:11px;color:#bbb;font-weight:600;}
+.stp.on{color:var(--roxo);}
+.stp.dn{color:var(--vd);}
+.snum{width:18px;height:18px;border-radius:50%;background:#e0e0e0;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#999;flex-shrink:0;}
+.stp.on .snum{background:var(--roxo);color:#fff;}
+.stp.dn .snum{background:var(--vd);color:#fff;}
+.sline{flex:1;height:1px;background:#e0e0e0;max-width:24px;}
+
+/* SECTION TITLE */
+.sec{font-family:'Nunito',sans-serif;font-weight:800;font-size:12px;color:var(--roxo);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.sec::after{content:'';flex:1;height:1px;background:var(--rl);opacity:.3;}
+
+/* FORM */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+.fg{display:flex;flex-direction:column;gap:5px;}
+.fg.full{grid-column:1/-1;}
+label{font-size:10px;font-weight:600;color:var(--roxo);text-transform:uppercase;letter-spacing:.6px;}
+input,select{background:#fff;border:1.5px solid rgba(78,32,150,.2);border-radius:10px;padding:9px 11px;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--rd);outline:none;transition:border-color .2s;width:100%;}
+input:focus,select:focus{border-color:var(--roxo);box-shadow:0 0 0 3px rgba(78,32,150,.1);}
+input[type=date]{cursor:pointer;}
+
+/* RADIO */
+.rrow{display:flex;gap:8px;}
+.ro{flex:1;background:#fff;border:1.5px solid rgba(78,32,150,.2);border-radius:10px;padding:9px;cursor:pointer;text-align:center;font-size:13px;color:var(--rd);font-weight:500;transition:all .2s;}
+.ro:hover{border-color:var(--roxo);}
+.ro.atv.on{border-color:var(--vm);color:var(--vm);background:#fff0ef;font-weight:700;}
+.ro.exp.on{border-color:var(--vd);color:var(--vd);background:#eff8f2;font-weight:700;}
+
+/* PREVIEW BAR */
+.pbar{background:linear-gradient(135deg,var(--roxo),var(--rd));border-radius:12px;padding:12px 15px;color:#fff;display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}
+.pbl{font-size:11px;opacity:.75;}
+.pbv{font-family:'Nunito',sans-serif;font-weight:800;font-size:19px;}
+.pbs{font-size:11px;opacity:.6;margin-top:2px;}
+
+/* PACKAGE CARDS */
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+.pc{background:#fff;border-radius:13px;border:2px solid transparent;padding:13px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden;}
+.pc:hover{transform:translateY(-2px);box-shadow:0 5px 16px rgba(78,32,150,.12);}
+.pc.sel{border-color:var(--roxo);box-shadow:0 0 0 3px rgba(78,32,150,.14);}
+.pc::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;border-radius:13px 13px 0 0;}
+.pc.pl::before{background:linear-gradient(90deg,#FFD700,#FFA840);}
+.pc.go::before{background:linear-gradient(90deg,#FFB347,#FFA840);}
+.pc.si::before{background:linear-gradient(90deg,#BDBDBD,#9E9E9E);}
+.pc.br::before{background:linear-gradient(90deg,#CD7F32,#A0522D);}
+.pbadge{display:inline-flex;padding:3px 9px;border-radius:20px;font-size:10px;font-weight:700;margin-bottom:7px;}
+.bpl{background:#FFF8DC;color:#8B6914;} .bgo{background:#FFF3E0;color:#B45309;}
+.bsi{background:#F5F5F5;color:#5D5D5D;} .bbr{background:#FBE9E7;color:#7B3A2A;}
+.pnm{font-family:'Nunito',sans-serif;font-weight:800;font-size:14px;color:var(--rd);margin-bottom:3px;}
+.psb{font-size:11px;color:#888;margin-bottom:9px;line-height:1.4;}
+.ppr{font-family:'Nunito',sans-serif;font-weight:900;font-size:18px;color:var(--roxo);}
+.ppr span{font-size:11px;font-weight:600;color:#888;}
+.pmeta{font-size:11px;color:#666;margin-top:4px;}
+.psla{font-size:11px;color:#999;margin-top:2px;}
+.chk{position:absolute;top:9px;right:9px;width:19px;height:19px;border-radius:50%;background:var(--roxo);display:none;align-items:center;justify-content:center;}
+.pc.sel .chk{display:flex;}
+.chk::after{content:'';width:4px;height:8px;border:2px solid #fff;border-top:none;border-left:none;transform:rotate(45deg) translate(-1px,-1px);}
+
+/* EXTRAS */
+.exbox{background:#fff;border-radius:13px;border:1.5px solid rgba(78,32,150,.12);padding:14px;margin-bottom:14px;}
+.ext{font-family:'Nunito',sans-serif;font-weight:800;font-size:12px;color:var(--roxo);margin-bottom:10px;}
+.exrow{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.exo{background:#fafafa;border:1.5px solid rgba(78,32,150,.14);border-radius:10px;padding:10px;cursor:pointer;transition:all .2s;}
+.exo:hover{border-color:var(--roxo);}
+.exo.on{border-color:var(--roxo);background:rgba(78,32,150,.04);}
+.exo-top{display:flex;justify-content:space-between;align-items:flex-start;}
+.exn{font-size:12px;font-weight:700;color:var(--rd);}
+.exbadge{background:var(--am);color:#fff;font-size:9px;font-weight:800;padding:2px 6px;border-radius:4px;}
+.exd{font-size:11px;color:#888;margin-top:3px;}
+.exsla{font-size:10px;color:#bbb;margin-top:4px;}
+
+/* ACTIONS LIST */
+.acbox{background:#fff;border-radius:13px;border:1.5px solid rgba(78,32,150,.12);padding:14px;margin-bottom:14px;}
+.act{font-family:'Nunito',sans-serif;font-weight:800;font-size:12px;color:var(--roxo);margin-bottom:10px;}
+.ai{display:flex;align-items:flex-start;gap:9px;padding:7px 0;border-bottom:.5px solid rgba(78,32,150,.07);}
+.ai:last-child{border-bottom:none;}
+.adot{width:7px;height:7px;border-radius:50%;background:var(--am);margin-top:4px;flex-shrink:0;}
+.an{font-size:12px;font-weight:600;color:var(--rd);}
+.ad{font-size:11px;color:#888;margin-top:1px;}
+.asla{font-size:10px;color:#bbb;margin-top:2px;}
+.ac{margin-left:auto;font-size:12px;font-weight:700;color:var(--vd);flex-shrink:0;}
+.ac.pg{color:var(--roxo);}
+
+/* BUTTON */
+.btn{width:100%;background:var(--roxo);color:#fff;border:none;border-radius:11px;padding:15px;font-family:'Nunito',sans-serif;font-weight:800;font-size:14px;cursor:pointer;transition:all .2s;margin-bottom:0;}
+.btn:hover{background:var(--rd);transform:translateY(-1px);}
+.btnr{width:100%;background:transparent;color:var(--roxo);border:1.5px solid rgba(78,32,150,.25);border-radius:11px;padding:11px;font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;transition:all .2s;margin-top:9px;}
+.btnr:hover{background:rgba(78,32,150,.04);}
+
+/* SLA BOX */
+.slabox{border-radius:13px;padding:14px;margin-bottom:14px;}
+.slabox.ok{background:#EFF8F2;border:1.5px solid var(--vd);}
+.slabox.warn{background:#FFF8E1;border:1.5px solid var(--am);}
+.slabox.late{background:#FFF0EF;border:1.5px solid var(--vm);}
+.slah{display:flex;align-items:center;gap:9px;margin-bottom:12px;}
+.slai{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:#fff;flex-shrink:0;}
+.slai.ok{background:var(--vd);} .slai.warn{background:var(--am);} .slai.late{background:var(--vm);}
+.slat{font-family:'Nunito',sans-serif;font-weight:800;font-size:13px;}
+.slat.ok{color:#1B5E20;} .slat.warn{color:#6B4C00;} .slat.late{color:#7F1D1D;}
+.slas{font-size:11px;margin-top:2px;}
+.slas.ok{color:#2E7D32;} .slas.warn{color:#8B6000;} .slas.late{color:#991B1B;}
+.slatl{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px;}
+.slast{background:rgba(255,255,255,.7);border-radius:9px;padding:9px;}
+.slastl{font-size:10px;color:#666;text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px;}
+.slastv{font-family:'Nunito',sans-serif;font-weight:800;font-size:13px;color:var(--rd);}
+.slastv.late{color:var(--vm);} .slastv.ok{color:var(--vd);}
+.sla-list{border-top:.5px solid rgba(0,0,0,.06);padding-top:8px;}
+.sla-list-t{font-size:10px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
+.slali{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:.5px solid rgba(0,0,0,.05);font-size:11px;}
+.slali:last-child{border-bottom:none;}
+.slali-n{color:#444;flex:1;}
+.slali-d{font-weight:700;color:var(--roxo);min-width:60px;text-align:right;}
+.slali-i{min-width:72px;text-align:right;}
+
+/* RESULT BOX */
+.resbox{background:var(--rd);border-radius:15px;padding:18px;margin-bottom:14px;position:relative;overflow:hidden;}
+.resbox::before{content:'';position:absolute;right:-18px;top:-18px;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,.04);}
+.rl{font-size:11px;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px;}
+.rv{font-family:'Nunito',sans-serif;font-weight:900;font-size:32px;color:var(--am);line-height:1;margin-bottom:4px;}
+.rn{font-family:'Nunito',sans-serif;font-weight:700;font-size:15px;color:#fff;margin-bottom:12px;}
+.rstats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;position:relative;z-index:1;}
+.rs{background:rgba(255,255,255,.08);border-radius:9px;padding:8px;}
+.rsl{font-size:10px;color:rgba(255,255,255,.5);margin-bottom:2px;}
+.rsv{font-family:'Nunito',sans-serif;font-weight:800;font-size:14px;color:#fff;}
+.icards{display:flex;gap:9px;margin-bottom:12px;}
+.ic{flex:1;background:#fff;border-radius:11px;border:1.5px solid rgba(78,32,150,.11);padding:11px;}
+.icl{font-size:10px;color:#888;text-transform:uppercase;letter-spacing:.7px;margin-bottom:3px;}
+.icv{font-size:13px;font-weight:700;color:var(--rd);}
+.ics{font-size:11px;color:#888;margin-top:2px;}
+.av{border-radius:11px;padding:12px 14px;display:flex;gap:9px;align-items:flex-start;margin-bottom:11px;}
+.av.y{background:#FFF8E1;border:1.5px solid var(--am);}
+.av.g{background:#EFF8F2;border:1.5px solid var(--vd);}
+.avi{width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;font-weight:800;color:#fff;}
+.avi.y{background:var(--am);} .avi.g{background:var(--vd);}
+.avt{font-size:12px;line-height:1.5;}
+.avt.y{color:#6B4C00;} .avt.g{color:#1B5E20;}
+.avt strong{font-weight:700;}
+.sep{height:1px;background:rgba(78,32,150,.08);margin:16px 0;}
+.disc{font-size:11px;color:#aaa;text-align:center;line-height:1.5;padding:0 8px;}
+.hidden{display:none;}
+</style>
+
+<div class="app">
+<div class="hdr">
+  <img id="logo-img" alt="Petlove" />
+  <div>
+    <div class="hdr-t">Calculadora de Pacotes B2B2E</div>
+    <div class="hdr-s">Plano de Saúde Pet · Time de Customer Success</div>
+  </div>
+</div>
+
+<div class="wrap">
+<div class="steps">
+  <div class="stp on" id="s1"><div class="snum">1</div>Dados</div>
+  <div class="sline"></div>
+  <div class="stp" id="s2"><div class="snum">2</div>Pacote</div>
+  <div class="sline"></div>
+  <div class="stp" id="s3"><div class="snum">3</div>Resultado</div>
+</div>
+
+<div class="sec">Dados da Empresa Parceira</div>
+<div class="g2">
+  <div class="fg full"><label>Nome da Empresa</label><input type="text" id="nome" placeholder="Ex: Acme Tecnologia Ltda" /></div>
+  <div class="fg full">
+    <label>Objetivo</label>
+    <div class="rrow">
+      <div class="ro atv" id="obj-a" onclick="setObj('a')">Ativação</div>
+      <div class="ro exp" id="obj-e" onclick="setObj('e')">Expansão</div>
+    </div>
+  </div>
+  <div class="fg"><label>Segmento</label>
+    <select id="seg" onchange="upd()">
+      <option value="">Selecione...</option>
+      <option value="tech">Tecnologia / Fintech / Startup</option>
+      <option value="outros">Outros segmentos</option>
+    </select>
+  </div>
+  <div class="fg"><label>Região de maior concentração</label>
+    <select id="reg" onchange="upd()">
+      <option value="">Selecione...</option>
+      <option value="sp">São Paulo (SP)</option>
+      <option value="pri">RJ, BH, Curitiba, Porto Alegre</option>
+      <option value="out">Outras regiões do Brasil</option>
+    </select>
+  </div>
+  <div class="fg"><label>Tipo de Contrato</label>
+    <select id="cont" onchange="upd()">
+      <option value="">Selecione...</option>
+      <option value="f">Desconto em Folha</option>
+      <option value="j">Jornada Digital</option>
+    </select>
+  </div>
+  <div class="fg"><label>Subsídio</label>
+    <select id="sub" onchange="upd()">
+      <option value="">Selecione...</option>
+      <option value="t">100% Subsidiado</option>
+      <option value="p">Parcialmente Subsidiado</option>
+      <option value="n">Sem Subsídio</option>
+    </select>
+  </div>
+  <div class="fg"><label>Nº de Colaboradores</label><input type="number" id="col" placeholder="Ex: 150" min="1" oninput="upd()" /></div>
+  <div class="fg"><label>Data de Lançamento</label><input type="date" id="dt" onchange="upd()" /></div>
+</div>
+
+<div class="pbar hidden" id="pbar">
+  <div><div class="pbl">Colaboradores</div><div class="pbv" id="pb-col">—</div><div class="pbs" id="pb-sub">—</div></div>
+  <div style="text-align:right"><div class="pbl">Score ICP</div><div class="pbv" id="pb-sc">—</div><div class="pbs" id="pb-tier">—</div></div>
+</div>
+
+<div class="sep"></div>
+<div class="sec">Pacote de Ativação</div>
+
+<div class="pgrid">
+  <div class="pc pl" id="pk-pl" onclick="selPkg('pl')">
+    <div class="chk"></div>
+    <div class="pbadge bpl">★ PLATINUM</div>
+    <div class="pnm">Platinum</div>
+    <div class="psb">Presencial + Digital · ICP máximo</div>
+    <div class="ppr">R$ 3.200 <span>/ empresa</span></div>
+    <div class="pmeta">8 ações · Peso 9–10</div>
+    <div class="psla">⏱ SLA: 20 dias</div>
+  </div>
+  <div class="pc go" id="pk-go" onclick="selPkg('go')">
+    <div class="chk"></div>
+    <div class="pbadge bgo">◆ GOLD</div>
+    <div class="pnm">Gold</div>
+    <div class="psb">Digital + Brinde · Alto valor</div>
+    <div class="ppr">R$ 1.200 <span>/ empresa</span></div>
+    <div class="pmeta">5 ações · Peso 6–8</div>
+    <div class="psla">⏱ SLA: 15 dias</div>
+  </div>
+  <div class="pc si" id="pk-si" onclick="selPkg('si')">
+    <div class="chk"></div>
+    <div class="pbadge bsi">● SILVER</div>
+    <div class="pnm">Silver</div>
+    <div class="psb">Digital + Brinde simples · Médio</div>
+    <div class="ppr">R$ 500 <span>/ empresa</span></div>
+    <div class="pmeta">5 ações · Peso 4–6</div>
+    <div class="psla">⏱ SLA: 15 dias</div>
+  </div>
+  <div class="pc br" id="pk-br" onclick="selPkg('br')">
+    <div class="chk"></div>
+    <div class="pbadge bbr">○ BRONZE</div>
+    <div class="pnm">Bronze</div>
+    <div class="psb">100% Digital · Self-service</div>
+    <div class="ppr">R$ 100 <span>/ empresa</span></div>
+    <div class="pmeta">4 ações · Peso 1–3</div>
+    <div class="psla">⏱ SLA: 7 dias</div>
+  </div>
+</div>
+
+<div class="exbox hidden" id="exbox">
+  <div class="ext">Opções extras — Platinum</div>
+  <div class="exrow">
+    <div class="exo" id="ex-r" onclick="togEx('r')">
+      <div class="exo-top"><div class="exn">Roleta Pet</div><div class="exbadge">+ R$ 400</div></div>
+      <div class="exd">Roleta brindada para evento</div>
+      <div class="exsla">SLA: 20 dias (já no pacote)</div>
+    </div>
+    <div class="exo" id="ex-c" onclick="togEx('c')">
+      <div class="exo-top"><div class="exn">Brinde co-branded</div><div class="exbadge">+ R$ 400</div></div>
+      <div class="exd">Logo empresa + Petlove no brinde</div>
+      <div class="exsla">SLA: 15 dias</div>
+    </div>
+  </div>
+</div>
+
+<div class="acbox hidden" id="acbox">
+  <div class="act" id="act-t">Ações incluídas</div>
+  <div id="ac-list"></div>
+</div>
+
+<button class="btn" onclick="calc()">Calcular SLA e Investimento ↗</button>
+
+<!-- RESULTADO — tudo aparece só após clicar -->
+<div class="hidden" id="res">
+<div class="sep"></div>
+<div class="sec">SLA & Cronograma</div>
+
+<div class="slabox" id="sla-box">
+  <div class="slah">
+    <div class="slai" id="sla-i">!</div>
+    <div><div class="slat" id="sla-t">—</div><div class="slas" id="sla-s">—</div></div>
+  </div>
+  <div class="slatl">
+    <div class="slast"><div class="slastl">Data lançamento</div><div class="slastv" id="sla-lanc">—</div></div>
+    <div class="slast"><div class="slastl">Iniciar até</div><div class="slastv" id="sla-ini">—</div></div>
+    <div class="slast"><div class="slastl">Dias restantes</div><div class="slastv" id="sla-dias">—</div></div>
+  </div>
+  <div class="sla-list">
+    <div class="sla-list-t">Cronograma por ação (ordenado por SLA)</div>
+    <div id="sla-rows"></div>
+  </div>
+</div>
+
+<div class="sec" style="margin-top:4px;">Investimento</div>
+<div class="resbox">
+  <div class="rl">Investimento total</div>
+  <div class="rv" id="r-v">—</div>
+  <div class="rn" id="r-n">—</div>
+  <div class="rstats">
+    <div class="rs"><div class="rsl">Colaboradores</div><div class="rsv" id="r-col">—</div></div>
+    <div class="rs"><div class="rsl">Meta adesão</div><div class="rsv" id="r-meta">—</div></div>
+    <div class="rs"><div class="rsl">Vidas estimadas</div><div class="rsv" id="r-vid">—</div></div>
+  </div>
+</div>
+
+<div class="icards">
+  <div class="ic"><div class="icl">Empresa</div><div class="icv" id="r-emp">—</div><div class="ics" id="r-det">—</div></div>
+  <div class="ic"><div class="icl">Objetivo / Tier</div><div class="icv" id="r-tier">—</div><div class="ics" id="r-cont">—</div></div>
+</div>
+
+<div class="av y" id="av-g">
+  <div class="avi y">!</div>
+  <div class="avt y"><strong>Personalizações extras?</strong><br>Itens fora do pacote padrão requerem aprovação do gestor responsável para verba adicional.</div>
+</div>
+<div class="av g hidden" id="av-icp">
+  <div class="avi g">★</div>
+  <div class="avt g"><strong>Parceiro ICP Prioritário!</strong><br>Perfil ideal para Platinum. Priorizar com o time de CS.</div>
+</div>
+
+<button class="btnr" onclick="rst()">Calcular para outra empresa</button>
+</div>
+
+<div class="sep"></div>
+<div class="disc">Calculadora interna · Petlove Saúde B2B2E · Verba mensal: R$ 20.000<br>Para aprovações fora dos pacotes padrão, contatar o gestor responsável.</div>
+</div>
+</div>
+
+<script>
+// Logo
+(function(){
+  const img=document.getElementById('logo-img');
+  const canvas=document.createElement('canvas');
+  canvas.width=200; canvas.height=60;
+  const ctx=canvas.getContext('2d');
+  ctx.fillStyle='#F3EEE8';
+  ctx.font='bold 38px Georgia,serif';
+  ctx.letterSpacing='-1px';
+  ctx.fillText('petlove',0,44);
+  ctx.fillStyle='#EA534A';
+  ctx.beginPath();
+  ctx.arc(185,10,7,0,Math.PI*2);
+  ctx.fill();
+  img.src=canvas.toDataURL();
+  img.style.height='32px';
+})();
+
+const PKG={
+  pl:{nm:'Platinum',val:3200,meta:.05,tier:'Tier A',sla:20,
+    ac:[
+      {n:'Promotor(a) de Vendas',d:'1 dia presencial na empresa (8h)',c:350,pg:true,sla:7},
+      {n:'Stand / Decoração',d:'Locação e montagem do stand pet',c:800,pg:true,sla:20},
+      {n:'Flyer Gráfico (A5) · 300 un.',d:'Flyer colorido A5, couchê 90g',c:600,pg:true,sla:10},
+      {n:'Brinde com logo Petlove · 30 un.',d:'Bandana/item pet com logo Petlove',c:900,pg:true,sla:15},
+      {n:'Palestra Online',d:'1 webinar veterinário (Zoom/Meet)',c:300,pg:true,sla:15},
+      {n:'E-mail para RH',d:'Sequência de 3 e-mails via CRM',c:0,pg:false,sla:7},
+      {n:'E-mail Direto Colaborador',d:'Régua de 5 e-mails automáticos',c:0,pg:false,sla:7},
+      {n:'Kit Digital RH',d:'Templates + argumentário pronto',c:0,pg:false,sla:7},
+    ]},
+  go:{nm:'Gold',val:1200,meta:.03,tier:'Tier A/B',sla:15,
+    ac:[
+      {n:'Brinde Estoque Nível 2 · 20 un.',d:'Toalha/porta-retrato com logo Petlove',c:600,pg:true,sla:15},
+      {n:'Flyer Gráfico (A5) · 150 un.',d:'Flyer colorido A5, couchê 90g',c:300,pg:true,sla:10},
+      {n:'E-mail para RH',d:'Sequência de 3 e-mails via CRM',c:0,pg:false,sla:7},
+      {n:'E-mail Direto Colaborador',d:'Régua de 4 e-mails automáticos',c:0,pg:false,sla:7},
+      {n:'Kit Digital RH',d:'Templates + argumentário pronto',c:0,pg:false,sla:7},
+    ]},
+  si:{nm:'Silver',val:500,meta:.015,tier:'Tier B',sla:15,
+    ac:[
+      {n:'Brinde Estoque Nível 1 · 30 un.',d:'Bolinha/cata-caca com logo Petlove',c:300,pg:true,sla:15},
+      {n:'E-mail para RH',d:'2 e-mails + 1 follow-up',c:0,pg:false,sla:7},
+      {n:'E-mail Direto Colaborador',d:'Régua de 3 e-mails automáticos',c:0,pg:false,sla:7},
+      {n:'WhatsApp/SMS · 200 disparos',d:'200 disparos via plataforma',c:30,pg:true,sla:7},
+      {n:'Pesquisa Universo Pet',d:'Survey de engajamento via CRM',c:0,pg:false,sla:7},
+    ]},
+  br:{nm:'Bronze',val:100,meta:.005,tier:'Tier C',sla:7,
+    ac:[
+      {n:'E-mail para RH',d:'1 e-mail de ativação',c:0,pg:false,sla:7},
+      {n:'E-mail Direto Colaborador',d:'Régua de 2 e-mails via CRM',c:0,pg:false,sla:7},
+      {n:'Kit Digital RH',d:'Templates prontos',c:0,pg:false,sla:7},
+      {n:'WhatsApp/SMS · 50 disparos',d:'50 disparos via plataforma',c:8,pg:true,sla:7},
+    ]},
+};
+
+let P=null,O=null,EX={r:false,c:false};
+
+function setObj(o){
+  O=o;
+  document.getElementById('obj-a').className='ro atv'+(o==='a'?' on':'');
+  document.getElementById('obj-e').className='ro exp'+(o==='e'?' on':'');
+  upd();
+}
+
+function selPkg(p){
+  P=p; EX={r:false,c:false};
+  document.getElementById('ex-r').className='exo';
+  document.getElementById('ex-c').className='exo';
+  document.querySelectorAll('.pc').forEach(c=>c.classList.remove('sel'));
+  document.getElementById('pk-'+p).classList.add('sel');
+  document.getElementById('exbox').className=p==='pl'?'exbox':'exbox hidden';
+  document.getElementById('acbox').className='acbox';
+  document.getElementById('act-t').textContent='Ações incluídas — Pacote '+PKG[p].nm;
+  renderAc();
+  stepSet(2);
+}
+
+function togEx(k){
+  EX[k]=!EX[k];
+  document.getElementById('ex-'+k).className='exo'+(EX[k]?' on':'');
+  renderAc();
+}
+
+function renderAc(){
+  if(!P) return;
+  const p=PKG[P];
+  let html='';
+  p.ac.forEach(a=>{
+    let n=a.n,d=a.d;
+    if(a.n.includes('Brinde com logo Petlove')&&EX.c){n='Brinde co-branded · 30 un.';d='Logo empresa + Petlove no brinde';}
+    html+=`<div class="ai"><div class="adot"></div><div style="flex:1"><div class="an">${n}</div><div class="ad">${d}</div><div class="asla">⏱ SLA: ${a.sla} dias</div></div><div class="ac ${a.pg?'pg':''}">${a.c===0?'incluso':'R$ '+a.c.toLocaleString('pt-BR')}</div></div>`;
+  });
+  if(EX.r) html+=`<div class="ai"><div class="adot" style="background:var(--am)"></div><div style="flex:1"><div class="an">Roleta Pet <span style="background:var(--am);color:#fff;font-size:9px;font-weight:800;padding:2px 6px;border-radius:4px;margin-left:4px">EXTRA</span></div><div class="ad">Roleta brindada para evento</div><div class="asla">⏱ SLA: 20 dias</div></div><div class="ac pg">+ R$ 400</div></div>`;
+  if(EX.c) html+=`<div class="ai"><div class="adot" style="background:var(--am)"></div><div style="flex:1"><div class="an">Co-branded <span style="background:var(--am);color:#fff;font-size:9px;font-weight:800;padding:2px 6px;border-radius:4px;margin-left:4px">EXTRA</span></div><div class="ad">Custo adicional personalização co-branded</div><div class="asla">⏱ SLA: 15 dias</div></div><div class="ac pg">+ R$ 400</div></div>`;
+  document.getElementById('ac-list').innerHTML=html;
+}
+
+function score(){
+  const s=document.getElementById('seg').value;
+  const r=document.getElementById('reg').value;
+  const c=document.getElementById('cont').value;
+  const b=document.getElementById('sub').value;
+  let sc=0;
+  if(s==='tech') sc+=3; else if(s==='outros') sc+=1;
+  if(r==='sp') sc+=2; else if(r==='pri') sc+=1;
+  if(c==='f') sc+=2; else if(c==='j') sc+=1;
+  if(b==='t') sc+=2; else if(b==='p') sc+=1;
+  if(O==='a') sc+=1;
+  return sc;
+}
+
+function fmt(d){return d.toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric'});}
+function addD(d,n){const x=new Date(d);x.setDate(x.getDate()+n);return x;}
+function diffD(a,b){return Math.round((a-b)/(86400000));}
+
+function calc(){
+  const nome=document.getElementById('nome').value.trim();
+  const col=parseInt(document.getElementById('col').value)||0;
+  const dtStr=document.getElementById('dt').value;
+  if(!nome||!P||col<1||!O||!dtStr){alert('Preencha todos os campos, objetivo, pacote e data de lançamento.');return;}
+
+  const p=PKG[P];
+  const exVal=(EX.r?400:0)+(EX.c?400:0);
+  const total=p.val+exVal;
+  const vidas=Math.round(col*p.meta);
+  const sc=score();
+
+  let maxSla=p.sla;
+  if(EX.r) maxSla=Math.max(maxSla,20);
+  if(EX.c) maxSla=Math.max(maxSla,15);
+
+  const today=new Date(); today.setHours(0,0,0,0);
+  const lanc=new Date(dtStr+'T00:00:00');
+  const ini=addD(lanc,-maxSla);
+  const dias=diffD(ini,today);
+
+  // SLA box
+  const box=document.getElementById('sla-box');
+  const icon=document.getElementById('sla-i');
+  const title=document.getElementById('sla-t');
+  const sub=document.getElementById('sla-s');
+  const diasEl=document.getElementById('sla-dias');
+
+  if(dias<0){
+    box.className='slabox late';
+    icon.className='slai late'; icon.textContent='!';
+    title.className='slat late'; title.textContent='⚠️ Prazo já ultrapassado!';
+    sub.className='slas late'; sub.textContent='A organização deveria ter iniciado há '+Math.abs(dias)+' dia(s). Acione o gestor imediatamente.';
+    diasEl.className='slastv late'; diasEl.textContent=Math.abs(dias)+'d atrasado';
+  } else if(dias<=3){
+    box.className='slabox warn';
+    icon.className='slai warn'; icon.textContent='~';
+    title.className='slat warn'; title.textContent='⏰ Prazo apertado!';
+    sub.className='slas warn'; sub.textContent='Restam apenas '+dias+' dia(s) para iniciar a organização.';
+    diasEl.className='slastv'; diasEl.textContent=dias+'d restante'+(dias!==1?'s':'');
+  } else {
+    box.className='slabox ok';
+    icon.className='slai ok'; icon.textContent='✓';
+    title.className='slat ok'; title.textContent='✅ Prazo confortável!';
+    sub.className='slas ok'; sub.textContent='Você tem '+dias+' dias para iniciar a organização antes do lançamento.';
+    diasEl.className='slastv ok'; diasEl.textContent=dias+'d restante'+(dias!==1?'s':'');
+  }
+
+  document.getElementById('sla-lanc').textContent=fmt(lanc);
+  document.getElementById('sla-ini').textContent=fmt(ini);
+
+  // Per-action rows
+  const allAc=[...p.ac];
+  if(EX.r) allAc.push({n:'Roleta Pet',sla:20});
+  if(EX.c) allAc.push({n:'Brinde co-branded',sla:15});
+  const sorted=[...allAc].sort((a,b)=>b.sla-a.sla);
+  let rhtml='';
+  sorted.forEach(a=>{
+    const iniA=addD(lanc,-a.sla);
+    const late=diffD(iniA,today)<0;
+    rhtml+=`<div class="slali"><div class="slali-n">${a.n}</div><div class="slali-d">${a.sla}d antes</div><div class="slali-i" style="${late?'color:var(--vm);font-weight:700;':''}">${fmt(iniA)}</div></div>`;
+  });
+  document.getElementById('sla-rows').innerHTML=rhtml;
+
+  // Result
+  const segL={'tech':'Tech/Fin/Startup','outros':'Outros'}[document.getElementById('seg').value]||'—';
+  const regL={'sp':'São Paulo','pri':'RJ/BH/CWB/POA','out':'Outras regiões'}[document.getElementById('reg').value]||'—';
+  const contL={'f':'Folha','j':'Jornada Digital'}[document.getElementById('cont').value]||'—';
+  const subL={'t':'100% Subsidiado','p':'Parcialmente Sub.','n':'Sem Subsídio'}[document.getElementById('sub').value]||'—';
+  const objL=O==='a'?'Ativação':'Expansão';
+  const extDesc=[EX.r?'+ Roleta':'',EX.c?'+ Co-branded':''].filter(Boolean).join(' ');
+
+  document.getElementById('r-v').textContent='R$ '+total.toLocaleString('pt-BR');
+  document.getElementById('r-n').textContent='Pacote '+p.nm+(extDesc?' · '+extDesc:'')+' · '+p.ac.length+' ações';
+  document.getElementById('r-col').textContent=col.toLocaleString('pt-BR');
+  document.getElementById('r-meta').textContent=(p.meta*100).toFixed(1)+'%';
+  document.getElementById('r-vid').textContent=vidas+' vidas';
+  document.getElementById('r-emp').textContent=nome;
+  document.getElementById('r-det').textContent=segL+' · '+regL;
+  document.getElementById('r-tier').textContent=objL+' · '+p.tier;
+  document.getElementById('r-cont').textContent=contL+' · '+subL;
+  document.getElementById('av-icp').className='av g'+(sc>=8?'':' hidden');
+
+  document.getElementById('res').className='';
+  stepSet(3);
+  setTimeout(()=>{document.getElementById('res').scrollIntoView({behavior:'smooth',block:'start'});},100);
+}
+
+function rst(){
+  ['nome','col','dt'].forEach(id=>{document.getElementById(id).value='';});
+  ['seg','reg','cont','sub'].forEach(id=>{document.getElementById(id).value='';});
+  P=null;O=null;EX={r:false,c:false};
+  document.querySelectorAll('.pc').forEach(c=>c.classList.remove('sel'));
+  document.getElementById('obj-a').className='ro atv';
+  document.getElementById('obj-e').className='ro exp';
+  document.getElementById('exbox').className='exbox hidden';
+  document.getElementById('acbox').className='acbox hidden';
+  document.getElementById('pbar').className='pbar hidden';
+  document.getElementById('res').className='hidden';
+  stepSet(1);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function stepSet(n){
+  ['s1','s2','s3'].forEach((id,i)=>{
+    const el=document.getElementById(id);
+    el.className='stp'+(i+1<n?' dn':i+1===n?' on':'');
+  });
+}
+
+function upd(){
+  if(P) renderAc();
+  const col=parseInt(document.getElementById('col').value)||0;
+  const s=document.getElementById('seg').value;
+  const r=document.getElementById('reg').value;
+  if(!col&&!s&&!r){document.getElementById('pbar').className='pbar hidden';return;}
+  document.getElementById('pbar').className='pbar';
+  document.getElementById('pb-col').textContent=col>0?col.toLocaleString('pt-BR'):'—';
+  const sc=score();
+  if(s||r){
+    document.getElementById('pb-sc').textContent=sc+'/10';
+    document.getElementById('pb-tier').textContent=sc>=8?'Tier A':sc>=5?'Tier B':'Tier C';
+  }
+  const cont=document.getElementById('cont').value;
+  const pts=[];
+  if(col>0) pts.push('~'+Math.round(col*.35)+' tutores est.');
+  if(cont) pts.push(cont==='f'?'Folha':'Jornada Digital');
+  document.getElementById('pb-sub').textContent=pts.join(' · ')||'Complete os dados';
+}
+</script>
